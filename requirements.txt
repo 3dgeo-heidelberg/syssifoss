@@ -1,0 +1,7 @@
+numpy==1.16.3
+jsonschema==3.2.0
+pandas==0.24.2
+laspy==1.6.0
+pykdtree==1.3.1
+scipy==1.2.1
+matplotlib==3.1.1

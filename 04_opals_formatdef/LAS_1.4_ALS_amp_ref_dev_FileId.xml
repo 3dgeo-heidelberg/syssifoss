@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<opalsFormatDefinition>
+  <description>LAS 1.4 with extra bytes "_Amplitude", "_Reflectance", "_Deviation" and "_FileId"</description>
+  <!--
+    Export as LAS Format version 1.4, with extra bytes "_Amplitude", "_Reflectance", "_Deviation" and "_FileId".
+	
+  -->
+  <las>
+    <versionMinor val="4"/>
+    <pointDataRecordFormat val="6"/>
+    <extraBytes>
+      <entry internalName="_Amplitude" lasDescription="Echo signal amplitude [dB]" lasType="float" invalidValue="NaN" />
+      <entry internalName="_Reflectance" lasDescription="Echo signal reflectance [dB]" lasType="float" invalidValue="NaN" />
+      <entry internalName="_Deviation" lasDescription="Pulse shape deviation" lasType="unsignedShort" invalidValue="65535" />
+	  <entry lasName="FileId" internalName="_FileId" lasType="unsignedShort"/>
+    </extraBytes>
+  </las>
+</opalsFormatDefinition>
