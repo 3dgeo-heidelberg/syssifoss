@@ -6,7 +6,6 @@ Grab points and attributes from source point cloud using points from target poin
   - For each point in the target point cloud, the closest k points in the source point cloud within a specified
     search_radius are written to the output point cloud (with attributes from source point cloud)
   - Assignment is done via Euclidean distance (provided by the search_radius parameter)
-(c) H Weiser, 2020 from Bernhard Hoefle, 2019
 
 Example use case: Extract single tree point cloud from a TLS plot point cloud with all attributes using
 (downsampled) segmented TLS point clouds of single trees (only xyz)
@@ -16,7 +15,7 @@ Important:
 - Source and target point clouds can be in LAS/LAZ format or ASCII format. The output point cloud will be in the same
   format as the source point cloud
 
-Usage: ...
+(c) H Weiser, 2020 from Bernhard Hoefle, 2019
 """
 
 import sys

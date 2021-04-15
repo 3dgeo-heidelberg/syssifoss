@@ -17,8 +17,6 @@ Important:
   (laszip.dll, e.g. from LAStools has to be added to the path to read LAZ files)
 - If source point cloud is LAZ, output will also be LAZ
 
-Usage: ...
-
 (c) H Weiser, 2020 from Bernhard Hoefle, 2019
 """
 
