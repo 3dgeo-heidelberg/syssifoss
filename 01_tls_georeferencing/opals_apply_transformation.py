@@ -45,7 +45,6 @@ def main(args):
     infiles.extend(glob.glob(targ_file))
 
     trafo_string = trafo_string.split(',')
-    print(trafo_string)
 
     if not os.path.exists(result_dir):
         os.makedirs(result_dir)
@@ -57,38 +56,40 @@ def main(args):
 
         imp = Import.Import()
         imp.inFile = target_file
-        target_current = os.path.join(result_dir, target_fn + "transformed1.odm")
+        target_current = os.path.join(result_dir, target_fn + "imported.odm")
         imp.outFile = target_current
-        imp.filter = "%s" % trafo_string[0]
-        imp.tileSize = 0.5
+        imp.globals.points_in_memory = 1000000000
+        imp.tileSize = 5.0
         imp.iFormat = formatdef
         imp.run(reset=True)
 
         to_remove = []
         to_remove.append(target_current)
+        
         for i, trafo in enumerate(trafo_string):
-            if i == 0:
-                continue
-            elif i == len(trafo_string)-1:
-                exp = Export.Export()
-                exp.inFile = target_current
-                target_current = os.path.join(result_dir, target_fn + "_t.las")
-                exp.outFile = target_current
-                exp.filter = "%s" % trafo
-                exp.oFormat = formatdef
-                exp.tileSize = 0.5
-                exp.run(reset=True)
-            else:
-                exp = Export.Export()
-                exp.inFile = target_current
-                target_current = os.path.join(result_dir, target_fn + "transformed%s.odm" % (i+1))
-                to_remove.append(target_current)
-                exp.outFile = target_current
-                exp.filter = "%s" % trafo
-                exp.globals.coord_ref_sys = "EPSG:25832"
-                exp.tileSize = 0.5
-                exp.run(reset=True)
-            os.remove(to_remove[i-1])
+            print(trafo)
+            exp = Export.Export()
+            exp.inFile = target_current
+            target_current = os.path.join(result_dir, target_fn + "transformed%s.odm" % (i))
+            to_remove.append(target_current)
+            exp.outFile = target_current
+            exp.filter = "%s" % trafo
+            exp.globals.coord_ref_sys = "EPSG:25832"
+            exp.tileSize = 5.0
+            exp.run(reset=True)
+            print(to_remove[i])
+            os.remove(to_remove[i])
+            
+        
+        exp = Export.Export()
+        exp.inFile = target_current
+        target_current = os.path.join(result_dir, target_fn + "_t.las")
+        exp.outFile = target_current
+        exp.oFormat = formatdef
+        exp.tileSize = 5.0
+        exp.run(reset=True)
+        print(to_remove[0])
+        os.remove(to_remove[-1])
 
 if __name__ == '__main__':
     main(sys.argv[1:])
