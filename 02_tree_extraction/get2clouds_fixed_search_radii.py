@@ -41,8 +41,9 @@ def readUserArguments():
     # Generate help and user argument parsing
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter, description="(c) Bernhard Hoefle (2019) - 3DGeo @ Heidelberg University")
     parser.add_argument("--source", dest='source', type=str, help="Source point cloud from which attributes and points shall be taken. It can be in ascii or las format", required=True)
-    parser.add_argument("--target", dest='target', nargs='+', type=str, help="Target point cloud(s) to which the attributes from source point cloud should be appended and which is the spatial select: only points of source close to points of the target are considered", required=True)
+    parser.add_argument("--target", dest='target', type=str, help="Target point cloud(s) to which the attributes from source point cloud should be appended and which is the spatial select: only points of source close to points of the target are considered", required=True)
     parser.add_argument("--out_dir", dest='out_dir', default="output", type=str, help="Directory, which output files are written to")
+    parser.add_argument("--has_header", dest='has_header', type=int, default="1", help="Do the input files contain a header line? (1 ... yes / 0 ... no / -1 yes but do not use = skip first line)")
     parser.add_argument("--k", dest='k', default="1", type=int, help="k of NN")
     opts = parser.parse_args()
     return opts
